@@ -22,13 +22,13 @@ def df(imgFolderLocation, img):
     # Init draw on img
     drowOnSelectedImg = ImageDraw.Draw(selectedImg)
 
-    # x0---------y0
+    # (x0,y0)------
     # |           |
     # |           |
     # |           |
     # |           |
-    # x1---------y1
-    drowOnSelectedImg.rectangle([x0, y0, x1, y1], outline="#ffffff", width=3)
+    # ------(x1,y1)
+    drowOnSelectedImg.rectangle([(x0, y0), (x1, y1)], outline="#ffffff", width=3)
 
   print('Show image...')
   selectedImg.show()
