@@ -26,11 +26,11 @@ def on_release(key):
     print_options()
     pass
   elif "2" in formatedKey:
-    print("Nop!")
+    print(" ...Nop!...\n")
     print_options()
     pass
   elif "3" in formatedKey:
-    print("Nop!")
+    print(" ...Nop!...\n")
     print_options()
     pass
   elif key == Key.esc:

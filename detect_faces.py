@@ -2,10 +2,10 @@ import face_recognition
 from PIL import Image, ImageDraw
 
 def df(imgFolderLocation, img):
-  print('Option One...\n')
+  print(' ...Option One...\n')
 
   image = face_recognition.load_image_file(imgFolderLocation + img)
-  print('Image imported...')
+  print('Image {} imported...'.format(img))
   
   print('Procesing image > detecting faces!...')
   # This metod returns a list of face coordiantes 
@@ -30,5 +30,5 @@ def df(imgFolderLocation, img):
     # ------(x1,y1)
     drowOnSelectedImg.rectangle([(x0, y0), (x1, y1)], outline="#ffffff", width=3)
 
-  print('Show image...')
+  print('Show image...\n\n')
   selectedImg.show()
