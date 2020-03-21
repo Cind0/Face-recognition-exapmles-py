@@ -12,7 +12,7 @@ def df(imgFolderLocation, img):
   face_locations = face_recognition.face_locations(image, model="cnn")
 
   # Load the same image to Pillow.py to draw on
-  selectedImg = Image.open(imgFolderLocation + img)
+  selected_img = Image.open(imgFolderLocation + img)
 
   print('Drawing rectangles...')
   for face_location in face_locations:
@@ -20,7 +20,7 @@ def df(imgFolderLocation, img):
     y0, x1, y1, x0 = face_location
 
     # Init draw on img
-    drowOnSelectedImg = ImageDraw.Draw(selectedImg)
+    drow_on_selected_img = ImageDraw.Draw(selected_img)
 
     # (x0,y0)------
     # |           |
@@ -28,7 +28,7 @@ def df(imgFolderLocation, img):
     # |           |
     # |           |
     # ------(x1,y1)
-    drowOnSelectedImg.rectangle([(x0, y0), (x1, y1)], outline="#ffffff", width=3)
+    drow_on_selected_img.rectangle([(x0, y0), (x1, y1)], outline="#ffffff", width=3)
 
   print('Show image...\n\n')
-  selectedImg.show()
+  selected_img.show()

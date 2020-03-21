@@ -2,8 +2,8 @@ print("Loading modules...")
 from pynput.keyboard import Key, Listener
 from detect_faces import df
 
-detectFacesImgFolderLocation = "./img/detect_faces/"
-detectFacesImg = "scientists.jpg"
+detect_faces_img_folder_location = "./img/detect_faces/"
+detect_faces_img = "scientists.jpg"
 
 recognizeFacesImgFolderLocation = "./img/recognize_faces/"
 
@@ -19,17 +19,17 @@ def print_options():
 print_options()
 
 def on_release(key):
-  formatedKey = '{}'.format(key)
+  formated_key = '{}'.format(key)
   
-  if "1" in formatedKey:
-    df(detectFacesImgFolderLocation, detectFacesImg)
+  if "1" in formated_key:
+    df(detect_faces_img_folder_location, detect_faces_img)
     print_options()
     pass
-  elif "2" in formatedKey:
+  elif "2" in formated_key:
     print(" ...Nop!...\n")
     print_options()
     pass
-  elif "3" in formatedKey:
+  elif "3" in formated_key:
     print(" ...Nop!...\n")
     print_options()
     pass
