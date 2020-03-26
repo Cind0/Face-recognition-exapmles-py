@@ -1,36 +1,52 @@
 import face_recognition
 from PIL import Image, ImageDraw, ImageFont
 
-
 def rf():
     print(' ...Option Two...\n')
 
-    # Load the jpg files into numpy arrays
-    einstein_image = face_recognition.load_image_file("./img/recognize_faces/Einstein.jpg")
-    unknown_image = face_recognition.load_image_file("./img/recognize_faces/einstein-birthday.jpg")
+    cindo_image = face_recognition.load_image_file("./img/recognize_faces/known_faces/cindo.jpg")
+    cindo_face_encoding = face_recognition.face_encodings(cindo_image)[0]
+    
+    viki_image = face_recognition.load_image_file("./img/recognize_faces/known_faces/viki.jpg")
+    viki_face_encoding = face_recognition.face_encodings(viki_image)[0]
+
+    jopa_image = face_recognition.load_image_file("./img/recognize_faces/known_faces/jopa.jpg")
+    jopa_face_encoding = face_recognition.face_encodings(jopa_image)[0]
+
+    franka_image = face_recognition.load_image_file("./img/recognize_faces/known_faces/franka.jpg")
+    franka_face_encoding = face_recognition.face_encodings(franka_image)[0]
+
+    unknown_image = face_recognition.load_image_file("./img/recognize_faces/kipa.jpg")
 
     face_locations = face_recognition.face_locations(unknown_image, model="cnn")
     
-    try:
-        einstein_face_encoding = face_recognition.face_encodings(einstein_image)[0]
-        unknown_face_encoding = face_recognition.face_encodings(unknown_image, known_face_locations=face_locations, num_jitters=1)
-    except IndexError:
-        print("I wasn't able to locate any faces in at least one of the images. Check the image files. Aborting...")
-        quit()
+    unknown_face_encoding = face_recognition.face_encodings(unknown_image, known_face_locations=face_locations, num_jitters=1)
 
-    known_faces = [
-        einstein_face_encoding
+    selected_img = Image.open("./img/recognize_faces/kipa.jpg").convert("RGB")
+    fnt = ImageFont.truetype("./font/OpenSans-Regular.ttf", 16)
+    
+    known_faces_encodings = [
+        cindo_face_encoding,
+        viki_face_encoding,
+        jopa_face_encoding,
+        franka_face_encoding
     ]
 
-    selected_img = Image.open("./img/recognize_faces/einstein-birthday.jpg").convert("RGB")
-    fnt = ImageFont.truetype("./font/OpenSans-Regular.ttf", 16)
-
+    known_face_names = [
+        "cindo",
+        "viki",
+        "jopa",
+        "franka"
+    ]
+    
+                        # combine unknown fece encoding with thier location on the image
     for unknown_face in zip(unknown_face_encoding, face_locations):
-        results = face_recognition.compare_faces(known_faces, unknown_face[0])
+        results = face_recognition.compare_faces(known_faces_encodings, unknown_face[0])
 
         name="Unknown"
         if True in results:
-            name="Einstein"
+            first_match_index = results.index(True)
+            name = known_face_names[first_match_index]
         
         y0, x1, y1, x0 = unknown_face[1]
 
@@ -40,5 +56,4 @@ def rf():
         drow_on_selected_img.text((x0, y1), name, (255, 255, 255), font=fnt)
   
     selected_img.show()
-    # selected_img.save('wup.jpg')
-rf()
+    selected_img.save('wup.jpg')

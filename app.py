@@ -1,6 +1,7 @@
 print("Loading modules...")
 from pynput.keyboard import Key, Listener
 from detect_faces import df
+from recognize_faces import rf
 
 detect_faces_img_folder_location = "./img/detect_faces/"
 detect_faces_img = "scientists.jpg"
@@ -11,9 +12,9 @@ def print_options():
   print(
     "-------------Select option:-------------\n"
     "1 > Detect faces\n"
-    "TODO: 2 > Recognize faces\n"
+    "2 > Recognize faces\n"
     "TODO: 3 > Recognize face outlines\n"
-    "-------------To Exit pres ESC:----------\n"
+    "-------------To Exit pres ESC:----------\n"2
   )
 
 print_options()
@@ -26,7 +27,7 @@ def on_release(key):
     print_options()
     pass
   elif "2" in formated_key:
-    print(" ...Nop!...\n")
+    rf()
     print_options()
     pass
   elif "3" in formated_key:
