@@ -56,4 +56,4 @@ def rf():
         drow_on_selected_img.text((x0, y1), name, (255, 255, 255), font=fnt)
   
     selected_img.show()
-    selected_img.save('wup.jpg')
+    # selected_img.save('wup.jpg')
