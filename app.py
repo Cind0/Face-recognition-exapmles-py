@@ -14,7 +14,7 @@ def print_options():
     "1 > Detect faces\n"
     "2 > Recognize faces\n"
     "TODO: 3 > Recognize face outlines\n"
-    "-------------To Exit pres ESC:----------\n"2
+    "-------------To Exit pres ESC:----------\n"
   )
 
 print_options()
