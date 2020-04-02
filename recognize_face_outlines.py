@@ -1,35 +1,42 @@
 import face_recognition
 from PIL import Image, ImageDraw
 
-# Load the jpg file into a numpy array
-image = face_recognition.load_image_file("./img/recognize_faces/Einstein.jpg")
+def rfo():
+  print(' ...Option Two...\n')
 
-# Find all facial features in all the faces in the image
-face_landmarks_list = face_recognition.face_landmarks(image)
-print(face_landmarks_list)
-pil_image = Image.fromarray(image)
-for face_landmarks in face_landmarks_list:
-  d = ImageDraw.Draw(pil_image, 'RGBA')
+  image = face_recognition.load_image_file("./img/recognize_faces/known_faces/cindo.jpg")
 
-  # Make the eyebrows into a nightmare
-  # d.polygon(face_landmarks['left_eyebrow'], fill=(68, 54, 39, 128))
-  # d.polygon(face_landmarks['right_eyebrow'], fill=(68, 54, 39, 128))
-  # d.line(face_landmarks['left_eyebrow'], fill=(68, 54, 39, 150), width=5)
-  # d.line(face_landmarks['right_eyebrow'], fill=(68, 54, 39, 150), width=5)
+  face_landmarks_list = face_recognition.face_landmarks(image)
 
-  # Gloss the lips
-  # d.polygon(face_landmarks['top_lip'], fill=(150, 0, 0, 128))
-  # d.polygon(face_landmarks['bottom_lip'], fill=(150, 0, 0, 128))
-  # d.line(face_landmarks['top_lip'], fill=(150, 0, 0, 64), width=8)
-  # d.line(face_landmarks['bottom_lip'], fill=(150, 0, 0, 64), width=8)
+  selected_image = Image.fromarray(image)
 
-  # Sparkle the eyes
-  d.polygon(face_landmarks['chin'], fill=(255, 255, 255, 50))
-  # d.polygon(face_landmarks['nose_tip'], fill=(255, 255, 255, 30))
+  for face_landmarks in face_landmarks_list:  
+    drow_on_selected_img = ImageDraw.Draw(selected_image, 'RGBA')
 
-  # Apply some eyeliner
-  # d.line(face_landmarks['left_eye'] + [face_landmarks['left_eye'][0]], fill=(0, 0, 0, 110), width=6)
-  # d.line(face_landmarks['right_eye'] + [face_landmarks['right_eye'][0]], fill=(0, 0, 0, 110), width=6)
+    # Eyesbrow
+    drow_on_selected_img.polygon(face_landmarks['left_eyebrow'], fill=(255,69,0, 128))
+    drow_on_selected_img.polygon(face_landmarks['right_eyebrow'], fill=(255,69,0, 128))
+    drow_on_selected_img.line(face_landmarks['left_eyebrow'], fill=(255,215,0, 150), width=6)
+    drow_on_selected_img.line(face_landmarks['right_eyebrow'], fill=(255,215,0, 150), width=6)
 
-  
-pil_image.show()
+    # Lips
+    drow_on_selected_img.polygon(face_landmarks['top_lip'], fill=(30,144,255, 128))
+    drow_on_selected_img.polygon(face_landmarks['bottom_lip'], fill=(30,144,255, 128))
+    drow_on_selected_img.line(face_landmarks['top_lip'], fill=(0,0,205, 100), width=8)
+    drow_on_selected_img.line(face_landmarks['bottom_lip'], fill=(0,0,205, 100), width=8)
+
+    # Eyes
+    drow_on_selected_img.polygon(face_landmarks['left_eye'], fill=(255,0,0, 80))
+    drow_on_selected_img.polygon(face_landmarks['right_eye'], fill=(255,0,0, 80))
+    drow_on_selected_img.line(face_landmarks['left_eye'] + [face_landmarks['left_eye'][0]], fill=(139,0,0, 180), width=6)
+    drow_on_selected_img.line(face_landmarks['right_eye'] + [face_landmarks['right_eye'][0]], fill=(139,0,0, 180), width=6)
+
+    # Chin
+    drow_on_selected_img.line(face_landmarks['chin'], fill=(255,99,71), width=6)
+
+    # Nose
+    drow_on_selected_img.line(face_landmarks['nose_bridge'], fill=(255,0,255, 80), width=6)  
+    drow_on_selected_img.polygon(face_landmarks['nose_tip'], fill=(138,43,226, 180))  
+    
+  selected_image.show()
+  # selected_image.save('./img/face_landmarks.jpg')

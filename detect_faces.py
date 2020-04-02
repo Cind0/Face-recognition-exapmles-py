@@ -1,18 +1,18 @@
 import face_recognition
 from PIL import Image, ImageDraw
 
-def df(imgFolderLocation, img):
+def df():
   print(' ...Option One...\n')
 
-  image = face_recognition.load_image_file(imgFolderLocation + img)
-  print('Image {} imported...'.format(img))
+  image = face_recognition.load_image_file('./img/detect_faces/scientists.jpg')
+  print('Image imported...')
   
   print('Procesing image > detecting faces!...')
   # This metod returns a list of face coordiantes 
   face_locations = face_recognition.face_locations(image, model="cnn")
 
   # Load the same image to Pillow.py to draw on
-  selected_img = Image.open(imgFolderLocation + img)
+  selected_img = Image.fromarray(image)
 
   print('Drawing rectangles...')
   for face_location in face_locations:

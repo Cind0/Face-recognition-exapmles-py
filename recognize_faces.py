@@ -2,7 +2,7 @@ import face_recognition
 from PIL import Image, ImageDraw, ImageFont
 
 def rf():
-    print(' ...Option Two...\n')
+    print(' ...Option Three...\n')
 
     cindo_image = face_recognition.load_image_file("./img/recognize_faces/known_faces/cindo.jpg")
     cindo_face_encoding = face_recognition.face_encodings(cindo_image)[0]
@@ -21,8 +21,8 @@ def rf():
     face_locations = face_recognition.face_locations(unknown_image, model="cnn")
     
     unknown_face_encoding = face_recognition.face_encodings(unknown_image, known_face_locations=face_locations, num_jitters=1)
-
-    selected_img = Image.open("./img/recognize_faces/kipa.jpg").convert("RGB")
+    
+    selected_img = Image.fromarray(unknown_image)
     fnt = ImageFont.truetype("./font/OpenSans-Regular.ttf", 16)
     
     known_faces_encodings = [
@@ -38,7 +38,6 @@ def rf():
         "jopa",
         "franka"
     ]
-    
                         # combine unknown fece encoding with thier location on the image
     for unknown_face in zip(unknown_face_encoding, face_locations):
         results = face_recognition.compare_faces(known_faces_encodings, unknown_face[0])
@@ -56,4 +55,4 @@ def rf():
         drow_on_selected_img.text((x0, y1), name, (255, 255, 255), font=fnt)
   
     selected_img.show()
-    # selected_img.save('wup.jpg')
+    # selected_img.save('./img/racognize_faces.jpg')
