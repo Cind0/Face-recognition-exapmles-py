@@ -32,3 +32,4 @@ def df():
 
   print('Show image...\n\n')
   selected_img.show()
+  # selected_img.save("./img/detect_faces.jpg")

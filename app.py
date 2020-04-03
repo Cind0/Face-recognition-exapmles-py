@@ -4,7 +4,7 @@ from pynput.keyboard import Key, Listener
 from detect_faces import df
 from recognize_face_outlines import rfo
 from recognize_faces import rf
-1
+
 def print_options():
   print(
     "-------------Select option:-------------\n"
