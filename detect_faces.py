@@ -10,11 +10,13 @@ def df():
   print('Procesing image > detecting faces!...')
   # This metod returns a list of face coordiantes 
   face_locations = face_recognition.face_locations(image, model="cnn")
+  print('\nNumber of faces detected > ', len(face_locations), '\n') 
+  print('Face locations\n', face_locations)
 
   # Load the same image to Pillow.py to draw on
   selected_img = Image.fromarray(image)
 
-  print('Drawing rectangles...')
+  print('\nDrawing rectangles...')
   for face_location in face_locations:
 
     y0, x1, y1, x0 = face_location

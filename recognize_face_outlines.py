@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw
 def rfo():
   print(' ...Option Two...\n')
 
-  image = face_recognition.load_image_file("./img/recognize_faces/known_faces/maja.jpg")
+  image = face_recognition.load_image_file("./img/recognize_faces/known_faces/jopa.jpg")
 
   face_landmarks_list = face_recognition.face_landmarks(image)
 
